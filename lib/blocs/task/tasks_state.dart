@@ -10,3 +10,5 @@ class TasksState extends Equatable {
   @override
   List<Object?> get props => [allTasks];
 }
+
+/// this class acts as data holder - these data will reflect in UI (for provider we can say this class as ChangeNotifier)
