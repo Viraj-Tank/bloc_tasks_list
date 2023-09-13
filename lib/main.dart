@@ -1,13 +1,15 @@
 import 'package:bloc_tasks_list/screens/tasks_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'blocs/bloc_exports.dart';
-import 'models/task.dart';
 
-void main() {
-  BlocOverrides.runZoned(
-    () => runApp(const MyApp()),
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: await getApplicationDocumentsDirectory(),
   );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

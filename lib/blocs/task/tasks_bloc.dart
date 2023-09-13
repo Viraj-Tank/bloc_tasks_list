@@ -6,7 +6,7 @@ part 'tasks_event.dart';
 
 part 'tasks_state.dart';
 
-class TasksBloc extends Bloc<TasksEvent, TasksState> {
+class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
   TasksBloc() : super(const TasksState()) {
     on<AddTask>(_addTask);
     on<UpdateTask>(_updateTask);
@@ -41,6 +41,12 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       TasksState(allTasks: List.from(state.allTasks)..remove(event.task)),
     );
   }
+
+  @override
+  TasksState? fromJson(Map<String, dynamic> json) => TasksState.fromMap(json);
+
+  @override
+  Map<String, dynamic>? toJson(TasksState state) => state.toMap();
 }
 
 /// bloc class is combination of EVENT and STATE
